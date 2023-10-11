@@ -36,8 +36,8 @@ int main()
 		//좌표 입력을 받음 
 		cout << "(x,y)좌표를 입력하세요: ";
 		cin >> x >> y;
-		
-		
+
+
 		//입력받은 좌표가 이미 돌이 차있는곳이거나 범위를 벗어날 경우 오류메세지 표시 
 		if (x >= numCell || y >= numCell)
 		{
@@ -70,12 +70,12 @@ int main()
 		}
 		cout << "---l---l---" << endl;
 		k++;
-		
+
 		//보드판에 빈칸이 없는지 확인
 		int checked = 0;
 		for (int i = 0; i < numCell; i++)
 		{
-			for (int j=0; j < numCell; j++) {
+			for (int j = 0; j < numCell; j++) {
 				if (board[i][j] == ' ') {
 					checked++;
 				}
@@ -87,8 +87,8 @@ int main()
 			cout << "모든 칸이 다 찼습니다. 종료합니다" << endl;
 			break;
 		}
-	
-		
+
+
 		bool isWin = false;
 
 		//가로로 이기는 경우 
@@ -96,9 +96,9 @@ int main()
 			if (board[i][0] == currentUser && board[i][1] == currentUser && board[i][2] == currentUser)
 			{
 				cout << "가로에 모두 돌이 놓였습니다!: ";
-					isWin = true;
+				isWin = true;
 			}
-		//세로 이기는 경우 
+			//세로 이기는 경우 
 			if (board[0][i] == currentUser && board[1][i] == currentUser && board[2][i] == currentUser)
 			{
 				cout << "세로에 모두 돌이 놓였습니다!: ";
@@ -106,12 +106,12 @@ int main()
 			}
 		}
 		//대각선이 꽉차서 이기는 경우 
-		if (board[0][0] == currentUser && board[1][1] == currentUser && board[2][2]) {
+		if (board[0][0] == currentUser && board[1][1] == currentUser && board[2][2] == currentUser) {
 			cout << "왼쪽 위에서 오른쪽 아래 대각선으로 모두 돌이 놓였습니다! :";
-				isWin = true;
+			isWin = true;
 		}
 
-		if (board[0][2] == currentUser && board[1][1] == currentUser && board[2][0]) {
+		if (board[0][2] == currentUser && board[1][1] == currentUser && board[2][0] == currentUser) {
 			cout << "오른쪽 위에서 왼쪽 아래 대각선으로 모두 돌이 놓였습니다! :";
 			isWin = true;
 		}
@@ -121,8 +121,8 @@ int main()
 			cout << "종료합니다" << endl;
 			break;
 		}
-		
-		
+
+
 	}
 	return 0;
 }
