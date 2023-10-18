@@ -32,8 +32,14 @@ string UpperStr(string str) {
 }
 
 int calcHammingDist(string s1, string s2) {
+	s1 = toLowerStr(s1);
+	s2 = toLowerStr(s2);
+
 	int count = 0;
-	if (toLowerStr(s1) == toLowerStr(s2))
-		count++;
+	for (int i = 0; i < s1.length(); i++) {
+		if (s1[i] != s2[i])
+			count += 1;
+
+	}
 	return count;
 }
