@@ -47,6 +47,7 @@ int main() {
 				user_y += 1;
 			}
 			else {
+			// 맵이 벗어 나지 않으므로 실행 moveminus함수로 -1를 시켜줌 
 				checkState(map, user_x, user_y);
 				cout << "현재 HP:"<<MoveMinus(hp);
 				cout << " 위로 한 칸 올라갑니다." << endl;
@@ -95,6 +96,7 @@ int main() {
 				user_x += 1;
 			}
 			else {
+				//// 맵이 벗어 나지 않으므로 실행 moveminus함수로 -1를 시켜줌 
 				checkState(map, user_x, user_y);
 				cout << "현재 HP:" << MoveMinus(hp);
 				cout << "왼쪽으로 이동합니다." << endl;
@@ -117,6 +119,7 @@ int main() {
 				user_x -= 1;
 			}
 			else {
+				// 맵이 벗어 나지 않으므로 실행 moveminus함수로 -1를 시켜줌 
 				checkState(map, user_x, user_y);
 				cout << "현재 HP:" << MoveMinus(hp);
 				cout << "오른쪽으로 이동합니다." << endl;
@@ -156,8 +159,10 @@ int main() {
 }
 
 
-// 지도와 사용자 위치 출력하는 함수
+// 지도와 사용자 위치 출력하는 함수\
+//배열의 크기를 정의할때 열부분만 적어도 인식을함! 원래는 둘다 적어야하지만!
 void displayMap(int map[][mapX], int user_x, int user_y) {
+	//행부분을 Y좌표로 설정하는 이유는 기본적으로  Y좌표를 행부분으로 인식하기때문이다!
 	for (int i = 0; i < mapY; i++) {
 		for (int j = 0; j < mapX; j++) {
 			if (i == user_y && j == user_x) {
@@ -207,28 +212,30 @@ bool checkGoal(int map[][mapX], int user_x, int user_y) {
 	return false;
 }
 
+//유저 이동시마다  hp 감소시키는 함수 
 int MoveMinus(int&x) {
 	if (true)
 		x-= 1;
 	return x;
 }
 
+//유저가 어떤 상태인지에 따라 반환값을 정하는 함수 
 void checkState(int map[][mapX], int user_x, int user_y) {
-	if (map[user_x][user_y] == map[1][0] || map[user_x][user_y] == map[0][1]) {
-		cout << "아이템이 있습니다";
 
+	switch (map[user_y][user_x]) {
+	case 1:
+		cout << "아이템이 있습니다" << endl;
+		break;
+	case 2:
+		cout << "적이 있습니다. HP가 2 줄어듭니다." << endl;
+		userHP -= 2;
+		break;
+	case 3:
+		cout << "포션이 있습니다. HP가 2 늘어납니다." << endl;
+
+		userHP += 2;
+		break;
 	}
-
-	if (map[user_x][user_y] == map[3][1]||map[user_x][user_y] == map[0][2] || map[user_x][user_y] == map[1][3] || map[user_x][user_y] == map[4][4]) {
-		cout << "적이 있습니다";
-		hp -= 2;
-
-	}
-
-	if (map[user_x][user_y] == map[4][0] || map[user_x][user_y] == map[3][2]) {
-		cout << "포션이 있습니다";
-			hp += 2;
-	}
-
-
 }
+
+
