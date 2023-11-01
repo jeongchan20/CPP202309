@@ -12,9 +12,9 @@ int main()
 	for (int i = 0; i < maxPeople; i++) // for문을 활용하여 배열에 값을 집어넣음
 	{	//cout << "총 고객의 수를 입력하라: "
 
-		cout << "사람 " << i + 1 << "의 " << "이름 : "; 
+		cout << "사람 " << i + 1 << "의 " << "이름 : ";
 		cin >> names[i]; // name 배열값 집어넣음
-		cout << "사람 " << i+1 << "의 " << "나이 : " ;
+		cout << "사람 " << i + 1 << "의 " << "나이 : ";
 		cin >> ages[i];// ages의  배열값을 집어넣음
 
 	}
@@ -30,15 +30,17 @@ int main()
 	{
 		if (ages[i] > ageThreshold) // ages의 나이가 클경우 
 		{
-		{
-			cout << names[i] << " (" << ages[i] << "세)\n";  // ages의 나이가 클경우 나이와 이름을 출력시킴
-			detectedPeople++; // ages의 나이가 더 크므로 명수 1명추가!
+			{
+				cout << names[i] << " (" << ages[i] << "세)\n";  // ages의 나이가 클경우 나이와 이름을 출력시킴
+				detectedPeople++; // ages의 나이가 더 크므로 명수 1명추가!
+			}
 		}
+
+		if (detectedPeople == 0) // 조건에 맞는사람이 0명이므로 고객이 없다고 출력!
+		{
+			cout << ageThreshold << "이상의 나이를 가진 고객이 없습니다";
+		}
+		return 0;
 	}
 
-	if (detectedPeople == 0) // 조건에 맞는사람이 0명이므로 고객이 없다고 출력!
-	{
-		cout << ageThreshold << "이상의 나이를 가진 고객이 없습니다";
-	}
-	return 0;
 }

@@ -228,12 +228,12 @@ void checkState(int map[][mapX], int user_x, int user_y) {
 		break;
 	case 2:
 		cout << "적이 있습니다. HP가 2 줄어듭니다." << endl;
-		userHP -= 2;
+		hp -= 2;
 		break;
 	case 3:
 		cout << "포션이 있습니다. HP가 2 늘어납니다." << endl;
 
-		userHP += 2;
+		hp += 2;
 		break;
 	}
 }
