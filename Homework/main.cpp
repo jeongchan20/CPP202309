@@ -6,6 +6,7 @@ const int mapY = 5;
 //클래스 전역변수 선언
 User my_user;
 
+
 // 사용자 정의 함수
 bool CheckXY(int user_x, int mapX, int user_y, int mapY);
 void DisplayMap(int map[][mapX], int user_x, int user_y);
@@ -16,7 +17,7 @@ void CheckState(int map[][mapX], int user_x, int user_y);
 // 메인  함수
 int main() {
 	//클래스에서의 선언된 hp
-	my_user.hp = 20;
+	 my_user.GetHP();
 	// 0은 빈 공간, 1은 아이템, 2는 적, 3은 포션, 4는 목적지
 	int map[mapY][mapX] = { {0, 1, 2, 0, 4},
 						   {1, 0, 0, 2, 0},
@@ -35,7 +36,7 @@ int main() {
 		string user_input = "";
 		int k = 0;
 
-		cout << "현재 HP:" << my_user.hp
+		cout << "현재 HP:" << my_user.GetHP()
 			<< "  명령어를 입력하세요 (상,하,좌,우,지도,종료): ";
 		cin >> user_input;
 
@@ -50,12 +51,12 @@ int main() {
 			else {
 				// 맵이 벗어 나지 않으므로 실행 moveminus함수로 -1를 시켜줌
 				CheckState(map, user_x, user_y);
-				MoveMinus(my_user.hp);
+				MoveMinus(my_user);
 				cout << "현재 HP:" << my_user.GetHP();
 				cout << " 위로 한 칸 올라갑니다." << endl;
 				DisplayMap(map, user_x, user_y);
 				// 체력이 0일경우 종료
-				if (my_user.hp <= 0) {
+				if (my_user.GetHP() <= 0) {
 					cout << "HP가 0 이하가 되었습니다. 실패했습니다.";
 					cout << "게임을 종료합니다.";
 					break;

@@ -8,3 +8,7 @@ void User::DecreaseHP(int dec_hp) {
 int User::GetHP() {
 	return hp;
 }
+
+void User::IncreaseHP(int inc_hp) {
+	hp = hp + inc_hp;
+}
