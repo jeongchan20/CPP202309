@@ -12,3 +12,20 @@ int User::GetHP() {
 void User::IncreaseHP(int inc_hp) {
 	hp = hp + inc_hp;
 }
+void User::doAttack() {
+	cout << "공격합니다" << endl;
+}
+
+class Magician : public User {
+public:
+	void doAttack() {
+		cout << "마법 사용" << endl;
+	};
+};
+
+class Warrior : public User {
+public:
+	void doAttack() {
+		cout << "베기 사용" << endl;
+	};
+};
