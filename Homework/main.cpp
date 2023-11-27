@@ -11,8 +11,8 @@ User my_user;
 bool CheckXY(int user_x, int mapX, int user_y, int mapY);
 void DisplayMap(int map[][mapX], int user_x, int user_y);
 bool CheckGoal(int map[][mapX], int user_x, int user_y);
-int MoveMinus(int& x);
 void CheckState(int map[][mapX], int user_x, int user_y);
+bool CheckUser(User user);
 
 // 메인  함수
 int main() {
@@ -51,12 +51,12 @@ int main() {
 			else {
 				// 맵이 벗어 나지 않으므로 실행 moveminus함수로 -1를 시켜줌
 				CheckState(map, user_x, user_y);
-				MoveMinus(my_user);
+				my_user.DecreaseHP(1);
 				cout << "현재 HP:" << my_user.GetHP();
 				cout << " 위로 한 칸 올라갑니다." << endl;
 				DisplayMap(map, user_x, user_y);
 				// 체력이 0일경우 종료
-				if (my_user.GetHP() <= 0) {
+				if (not(CheckUser(my_user))) {
 					cout << "HP가 0 이하가 되었습니다. 실패했습니다.";
 					cout << "게임을 종료합니다.";
 					break;
@@ -74,12 +74,12 @@ int main() {
 			}
 			else {
 				CheckState(map, user_x, user_y);
-				MoveMinus(my_user.hp) ;
+				my_user.DecreaseHP(1);
 					cout << "현재 HP:" << my_user.GetHP();
 				cout << " 위로 한 칸 내려갑니다." << endl;
 				DisplayMap(map, user_x, user_y);
 				// 체력이 0일경우 종료
-				if (my_user.hp <= 0) {
+				if (not(CheckUser(my_user))) {
 					cout << "HP가 0 이하가 되었습니다. 실패했습니다.";
 					cout << "게임을 종료합니다.";
 					break;
@@ -96,14 +96,14 @@ int main() {
 				user_x += 1;
 			}
 			else {
-				//// 맵이 벗어 나지 않으므로 실행 moveminus함수로 -1를 시켜줌
+				
 				CheckState(map, user_x, user_y);
-				MoveMinus(my_user.hp);
+				my_user.DecreaseHP(1);
 				cout << "현재 HP:" << my_user.GetHP();
 				cout << "왼쪽으로 이동합니다." << endl;
 				DisplayMap(map, user_x, user_y);
 				// 체력이 0일경우 종료
-				if (my_user.hp <= 0) {
+				if (not(CheckUser(my_user))) {
 					cout << "HP가 0 이하가 되었습니다. 실패했습니다.";
 					cout << "게임을 종료합니다.";
 					break;
@@ -121,12 +121,12 @@ int main() {
 			else {
 				// 맵이 벗어 나지 않으므로 실행 moveminus함수로 -1를 시켜줌
 				CheckState(map, user_x, user_y);
-				MoveMinus(my_user.hp);
+				my_user.DecreaseHP(1);
 				cout << "현재 HP:" << my_user.GetHP();
 				cout << "오른쪽으로 이동합니다." << endl;
 				DisplayMap(map, user_x, user_y);
 				// 체력이 0일경우 종료
-				if (my_user.hp <= 0) {
+				if (not(CheckUser(my_user))) {
 					cout << "HP가 0 이하가 되었습니다. 실패했습니다.";
 					cout << "게임을 종료합니다.";
 					break;
@@ -212,11 +212,7 @@ bool CheckGoal(int map[][mapX], int user_x, int user_y) {
 	return false;
 }
 
-// 유저 이동시마다  hp 감소시키는 함수
-int MoveMinus(int& x) {
-	if (true) x -= 1;
-	return x;
-}
+
 
 // 유저가 어떤 상태인지에 따라 반환값을 정하는 함수
 void CheckState(int map[][mapX], int user_x, int user_y) {
@@ -231,7 +227,15 @@ void CheckState(int map[][mapX], int user_x, int user_y) {
 	case 3:
 		cout << "포션이 있습니다. HP가 2 늘어납니다." << endl;
 
-		my_user.DecreaseHP(-2);
+		my_user.IncreaseHP(2);
 		break;
 	}
+}
+//hp체크 함수
+bool CheckUser(User user) {
+	if (user.GetHP() < 1) {
+		return false;
+	}
+	else
+		return true;
 }
