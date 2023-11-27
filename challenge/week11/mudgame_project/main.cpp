@@ -5,7 +5,8 @@ const int mapX = 5;
 const int mapY = 5;
 //클래스 전역변수 선언
 User my_user;
-
+User Magician;
+User Warrior;
 
 // 사용자 정의 함수
 bool CheckXY(int user_x, int mapX, int user_y, int mapY);
@@ -221,6 +222,7 @@ void CheckState(int map[][mapX], int user_x, int user_y) {
 		cout << "아이템이 있습니다" << endl;
 		break;
 	case 2:
+		Magician.doAttack();
 		cout << "적이 있습니다. HP가 2 줄어듭니다." << endl;
 		my_user.DecreaseHP(2);
 		break;
